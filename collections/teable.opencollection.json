@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Space",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List spaces", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/spaces" },
+          "docs": "Get the list of spaces the authenticated user can access."
+        },
+        {
+          "info": { "name": "Create a space", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/spaces",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Create a new space."
+        },
+        {
+          "info": { "name": "Get a space", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/spaces/{{spaceId}}" },
+          "docs": "Get a single space by id."
+        },
+        {
+          "info": { "name": "Update a space", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/spaces/{{spaceId}}",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Update a space."
+        },
+        {
+          "info": { "name": "Delete a space", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/spaces/{{spaceId}}" },
+          "docs": "Delete a space."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Base",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List bases", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/bases" },
+          "docs": "List all bases accessible to the authenticated user."
+        },
+        {
+          "info": { "name": "Create a base", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/bases",
+            "body": { "type": "json", "data": "{\n  \"spaceId\": \"<string>\",\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Create a base in a space."
+        },
+        {
+          "info": { "name": "Get a base", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/bases/{{baseId}}" },
+          "docs": "Get a base by id."
+        },
+        {
+          "info": { "name": "Update a base", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/bases/{{baseId}}",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Update a base."
+        },
+        {
+          "info": { "name": "Delete a base", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/bases/{{baseId}}" },
+          "docs": "Delete a base."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List tables", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/base/{{baseId}}/table" },
+          "docs": "List the tables in a base."
+        },
+        {
+          "info": { "name": "Create a table", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/base/{{baseId}}/table",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Create a table in a base."
+        },
+        {
+          "info": { "name": "Get a table", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/base/{{baseId}}/table/{{tableId}}" },
+          "docs": "Get a table by id."
+        },
+        {
+          "info": { "name": "Delete a table", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/base/{{baseId}}/table/{{tableId}}" },
+          "docs": "Delete a table."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Field",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List fields", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/table/{{tableId}}/field" },
+          "docs": "List the fields in a table."
+        },
+        {
+          "info": { "name": "Create a field", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/{{tableId}}/field",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"type\": \"singleLineText\"\n}" }
+          },
+          "docs": "Create a field in a table."
+        },
+        {
+          "info": { "name": "Get a field", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/table/{{tableId}}/field/{{fieldId}}" },
+          "docs": "Get a field by id."
+        },
+        {
+          "info": { "name": "Update a field", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/table/{{tableId}}/field/{{fieldId}}",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Update a field."
+        },
+        {
+          "info": { "name": "Convert a field type", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.teable.io/api/table/{{tableId}}/field/{{fieldId}}/convert",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"type\": \"number\"\n}" }
+          },
+          "docs": "Convert a field to another type."
+        },
+        {
+          "info": { "name": "Delete a field", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/table/{{tableId}}/field/{{fieldId}}" },
+          "docs": "Delete a field."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Record",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List records", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/{{tableId}}/record?take=100&skip=0&fieldKeyType=name&cellFormat=json"
+          },
+          "docs": "List records with optional filter, orderBy, search, projection, and pagination."
+        },
+        {
+          "info": { "name": "Create records", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/{{tableId}}/record",
+            "body": { "type": "json", "data": "{\n  \"fieldKeyType\": \"name\",\n  \"typecast\": true,\n  \"records\": [\n    { \"fields\": { \"Name\": \"<string>\" } }\n  ]\n}" }
+          },
+          "docs": "Create one or more records."
+        },
+        {
+          "info": { "name": "Get a record", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/table/{{tableId}}/record/{{recordId}}" },
+          "docs": "Get a record by id."
+        },
+        {
+          "info": { "name": "Update a record", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/table/{{tableId}}/record/{{recordId}}",
+            "body": { "type": "json", "data": "{\n  \"fieldKeyType\": \"name\",\n  \"record\": { \"fields\": { \"Name\": \"<string>\" } }\n}" }
+          },
+          "docs": "Update a record."
+        },
+        {
+          "info": { "name": "Delete a record", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/table/{{tableId}}/record/{{recordId}}" },
+          "docs": "Delete a record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "View",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List views", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/table/{{tableId}}/view" },
+          "docs": "List the views of a table."
+        },
+        {
+          "info": { "name": "Create a view", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/{{tableId}}/view",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"type\": \"grid\"\n}" }
+          },
+          "docs": "Create a view (grid, form, kanban, gallery, calendar)."
+        },
+        {
+          "info": { "name": "Get a view", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.teable.io/api/table/{{tableId}}/view/{{viewId}}" },
+          "docs": "Get a view by id."
+        },
+        {
+          "info": { "name": "Delete a view", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://app.teable.io/api/table/{{tableId}}/view/{{viewId}}" },
+          "docs": "Delete a view."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Get an upload signature", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/attachments/signature",
+            "body": { "type": "json", "data": "{\n  \"contentType\": \"image/png\",\n  \"contentLength\": 1024\n}" }
+          },
+          "docs": "Request a signed token to upload an attachment."
+        },
+        {
+          "info": { "name": "Notify upload completion", "type": "http" },
+          "http": { "method": "POST", "url": "https://app.teable.io/api/attachments/notify/{{token}}" },
+          "docs": "Notify the server that an attachment upload has finished and retrieve its metadata."
+        }
+      ]
+    }
+  ]
+}

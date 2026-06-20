@@ -1,0 +1,99 @@
+aid: teable
+name: Teable
+review:
+  question: Does Teable expose a documented public WebSocket / realtime streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Teable's web client uses realtime collaboration internally (operational
+    transforms over a socket/ShareDB-style channel) to keep grids in sync
+    between collaborators. However, this realtime transport is an internal
+    application detail and is NOT documented as a public, consumable API in the
+    Teable API reference. The documented developer surface is REST only. Because
+    no public WebSocket or SSE API is documented for third-party use, no
+    AsyncAPI document was authored.
+findings:
+  summary: |
+    Teable publishes a documented public REST API (OpenAPI / Swagger) under the
+    base path /api on Teable Cloud (https://app.teable.io/api,
+    https://app.teable.ai/api) and on self-hosted Community Edition instances.
+    It covers spaces, bases, tables, fields, records (full CRUD with filter /
+    orderBy / search / projection / pagination), views, and attachments.
+    Authentication is Bearer token (personal access token or OAuth access
+    token). Realtime collaboration exists in the product UI but is not exposed
+    or documented as a public streaming API, so it is out of scope for AsyncAPI
+    modeling under current API Evangelist scope.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.teable.io/api
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.teable.ai/api
+      documented: true
+      note: Alternate cloud host; teable.io redirects to teable.ai.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        Realtime collaboration is used internally by the web client but is not
+        documented as a public API for third-party consumption.
+  endpointsConfirmedRest:
+    - GET    https://app.teable.io/api/spaces
+    - POST   https://app.teable.io/api/spaces
+    - GET    https://app.teable.io/api/spaces/{spaceId}
+    - PATCH  https://app.teable.io/api/spaces/{spaceId}
+    - DELETE https://app.teable.io/api/spaces/{spaceId}
+    - GET    https://app.teable.io/api/spaces/{spaceId}/collaborators
+    - GET    https://app.teable.io/api/bases
+    - POST   https://app.teable.io/api/bases
+    - GET    https://app.teable.io/api/bases/{baseId}
+    - PATCH  https://app.teable.io/api/bases/{baseId}
+    - DELETE https://app.teable.io/api/bases/{baseId}
+    - POST   https://app.teable.io/api/bases/{baseId}/duplicate
+    - GET    https://app.teable.io/api/base/{baseId}/table
+    - POST   https://app.teable.io/api/base/{baseId}/table
+    - GET    https://app.teable.io/api/base/{baseId}/table/{tableId}
+    - DELETE https://app.teable.io/api/base/{baseId}/table/{tableId}
+    - GET    https://app.teable.io/api/table/{tableId}/field
+    - POST   https://app.teable.io/api/table/{tableId}/field
+    - GET    https://app.teable.io/api/table/{tableId}/field/{fieldId}
+    - PATCH  https://app.teable.io/api/table/{tableId}/field/{fieldId}
+    - DELETE https://app.teable.io/api/table/{tableId}/field/{fieldId}
+    - PUT    https://app.teable.io/api/table/{tableId}/field/{fieldId}/convert
+    - GET    https://app.teable.io/api/table/{tableId}/record
+    - POST   https://app.teable.io/api/table/{tableId}/record
+    - DELETE https://app.teable.io/api/table/{tableId}/record
+    - GET    https://app.teable.io/api/table/{tableId}/record/{recordId}
+    - PATCH  https://app.teable.io/api/table/{tableId}/record/{recordId}
+    - DELETE https://app.teable.io/api/table/{tableId}/record/{recordId}
+    - GET    https://app.teable.io/api/table/{tableId}/view
+    - POST   https://app.teable.io/api/table/{tableId}/view
+    - GET    https://app.teable.io/api/table/{tableId}/view/{viewId}
+    - DELETE https://app.teable.io/api/table/{tableId}/view/{viewId}
+    - POST   https://app.teable.io/api/attachments/signature
+    - POST   https://app.teable.io/api/attachments/notify/{token}
+sources:
+  - url: https://help.teable.ai/en/api-doc/overview
+    type: Documentation
+    note: API overview lists the /api base path and Bearer token auth (personal access token / OAuth).
+  - url: https://help.teable.ai/swagger.json
+    type: OpenAPI
+    note: Published OpenAPI / Swagger document for the Teable REST API.
+  - url: https://help.teable.ai/llms.txt
+    type: Documentation
+    note: Machine-readable index enumerating space, base, table, field, record, view, and attachment endpoints.
+  - url: https://github.com/teableio/teable
+    type: SourceCode
+    note: Open-source Community Edition (AGPL-3.0), the no-code Postgres database; confirms self-host deployment.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No public streaming API is documented. The catalog models the documented
+    REST surface only (OpenAPI + Postman + Open Collection). Realtime
+    collaboration is noted as an internal, undocumented transport and is not
+    represented as an AsyncAPI artifact.

@@ -1,0 +1,72 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Teable
+providerId: teable
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- No-Code
+- Database
+- Airtable Alternative
+- Postgres
+- Open Source
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Teable's REST API is governed primarily by plan-based resource quotas (rows,
+  automation runs, attachment storage, AI credits) rather than published
+  per-endpoint request-rate ceilings. Record list requests cap page size at
+  take=1000 and use skip-based pagination. Self-hosted Community Edition
+  deployments are bounded by the operator's own Postgres and infrastructure
+  capacity. Specific per-account request-rate values are not reconciled in this
+  artifact.
+notes: >-
+  Teable does not publish hard per-minute API request limits the way many SaaS
+  APIs do; throughput is mainly constrained by plan quotas and, for self-hosted,
+  by your infrastructure. Verify any throttling behavior and 429 handling in the
+  current API documentation during reconciliation.
+sources:
+- https://help.teable.ai/en/api-doc/overview
+- https://teable.ai/pricing
+- https://github.com/teableio/teable
+responseCodes:
+  throttled: 429
+limits:
+- name: Record Page Size (take)
+  scope: request
+  metric: records
+  limit: 1000
+  notes: Maximum records returned per list call; paginate with skip.
+- name: Rows Quota
+  scope: account
+  metric: rows
+  limit: plan-based (1,000 Free / 250,000 Pro / 1,000,000 Business)
+  notes: Total rows allowed across the account by cloud tier; unbounded by license for self-host.
+- name: Automation Runs
+  scope: account
+  metric: runs
+  limit: plan-based (100 Free / 25,000 Pro / 100,000 Business)
+  notes: Monthly automation executions by cloud tier.
+- name: Attachment Storage
+  scope: account
+  metric: storage
+  limit: plan-based (1 GB Free / 10 GB Pro / 100 GB Business)
+  notes: Total attachment storage by cloud tier.
+- name: AI Credits
+  scope: account
+  metric: credits
+  limit: plan-based (500 Free / 1,000 Pro / 2,000 Business per seat)
+  notes: Credits consumed by AI chat, AI field, and related features.
+policies:
+- name: Quota-Based Limits
+  description: API throughput is governed by plan quotas (rows, runs, storage, credits) rather than fixed RPM ceilings.
+- name: Self-Host Capacity
+  description: Self-hosted Community Edition has no license-imposed limits; capacity is set by your Postgres and host resources.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor any 429 / Retry-After responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,118 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Teable
+providerId: teable
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- No-Code
+- Database
+- Airtable Alternative
+- Postgres
+- Open Source
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Teable spend. Teable Cloud bills per seat by tier (Free, Pro,
+  Business) with bundled quotas for rows, automation runs, attachment storage,
+  and AI credits, plus add-on subscriptions for credits, runs, records, and
+  storage on Pro and above. The open-source Community Edition (AGPL-3.0) carries
+  no license fee, shifting cost to self-managed Postgres and infrastructure.
+notes: >-
+  Seat prices and quotas reflect the published pricing page and may change;
+  verify during reconciliation. For self-hosted deployments, model cost as
+  infrastructure (compute, Postgres, storage, egress) rather than vendor fees.
+sources:
+- https://teable.ai/pricing
+- https://teable.io
+- https://github.com/teableio/teable
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Teable
+serviceCategory: Databases and Productivity
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Teable Cloud
+  ServiceCategory: Databases and Productivity
+  ProviderName: Teable
+  PublisherName: Teable
+  InvoiceIssuerName: Teable
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: seats
+  description: Paid seats by tier (Pro $10, Business $20 per seat/month billed yearly).
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: rows
+  description: Records stored against the plan row quota.
+  unit: rows
+  aggregation: max
+  dimensions:
+  - account
+  - base
+- name: automation_runs
+  description: Automation executions against the monthly run quota.
+  unit: runs
+  aggregation: sum
+  dimensions:
+  - account
+  - space
+- name: attachment_storage
+  description: Attachment storage consumed against the plan storage quota.
+  unit: gigabytes
+  aggregation: max
+  dimensions:
+  - account
+- name: ai_credits
+  description: AI credits consumed by AI chat, AI field, and related features.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - space
+- name: addon_subscriptions
+  description: Add-on packs for credits, automation runs, records, and storage on Pro and above.
+  unit: subscriptions
+  aggregation: sum
+  dimensions:
+  - account
+  - addon
+- name: self_host_infrastructure
+  description: Self-managed compute, Postgres, and storage cost for Community Edition deployments (no vendor license fee).
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - account
+  - resource
+principles:
+- name: Visibility
+  description: Track seat counts per space and monitor row, run, storage, and credit consumption against tier quotas.
+- name: Allocation
+  description: Map spaces, bases, and seats to teams and cost centers; tag add-on subscriptions to their workloads.
+- name: Optimization
+  description: Right-size tiers to actual seat and quota usage; consider self-hosting the AGPL Community Edition to trade vendor fees for infrastructure cost when volumes are high.
+- name: Accountability
+  description: Assign owners per space; review seat and add-on spend monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

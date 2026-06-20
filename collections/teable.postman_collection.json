@@ -1,0 +1,314 @@
+{
+  "info": {
+    "name": "Teable API",
+    "description": {
+      "content": "REST API for Teable, the open-source no-code database built on PostgreSQL. Authentication uses a Bearer access token (personal access token or OAuth access token).",
+      "type": "text/plain"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://app.teable.io/api" },
+    { "key": "spaceId", "value": "" },
+    { "key": "baseId", "value": "" },
+    { "key": "tableId", "value": "" },
+    { "key": "fieldId", "value": "" },
+    { "key": "recordId", "value": "" },
+    { "key": "viewId", "value": "" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Space",
+      "item": [
+        {
+          "name": "List spaces",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/spaces", "host": ["{{baseUrl}}"], "path": ["spaces"] }
+          }
+        },
+        {
+          "name": "Create a space",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/spaces", "host": ["{{baseUrl}}"], "path": ["spaces"] }
+          }
+        },
+        {
+          "name": "Get a space",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/spaces/{{spaceId}}", "host": ["{{baseUrl}}"], "path": ["spaces", "{{spaceId}}"] }
+          }
+        },
+        {
+          "name": "Update a space",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/spaces/{{spaceId}}", "host": ["{{baseUrl}}"], "path": ["spaces", "{{spaceId}}"] }
+          }
+        },
+        {
+          "name": "Delete a space",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/spaces/{{spaceId}}", "host": ["{{baseUrl}}"], "path": ["spaces", "{{spaceId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Base",
+      "item": [
+        {
+          "name": "List bases",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/bases", "host": ["{{baseUrl}}"], "path": ["bases"] }
+          }
+        },
+        {
+          "name": "Create a base",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"spaceId\": \"<string>\",\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/bases", "host": ["{{baseUrl}}"], "path": ["bases"] }
+          }
+        },
+        {
+          "name": "Get a base",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/bases/{{baseId}}", "host": ["{{baseUrl}}"], "path": ["bases", "{{baseId}}"] }
+          }
+        },
+        {
+          "name": "Update a base",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/bases/{{baseId}}", "host": ["{{baseUrl}}"], "path": ["bases", "{{baseId}}"] }
+          }
+        },
+        {
+          "name": "Delete a base",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/bases/{{baseId}}", "host": ["{{baseUrl}}"], "path": ["bases", "{{baseId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Table",
+      "item": [
+        {
+          "name": "List tables",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/base/{{baseId}}/table", "host": ["{{baseUrl}}"], "path": ["base", "{{baseId}}", "table"] }
+          }
+        },
+        {
+          "name": "Create a table",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/base/{{baseId}}/table", "host": ["{{baseUrl}}"], "path": ["base", "{{baseId}}", "table"] }
+          }
+        },
+        {
+          "name": "Get a table",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/base/{{baseId}}/table/{{tableId}}", "host": ["{{baseUrl}}"], "path": ["base", "{{baseId}}", "table", "{{tableId}}"] }
+          }
+        },
+        {
+          "name": "Delete a table",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/base/{{baseId}}/table/{{tableId}}", "host": ["{{baseUrl}}"], "path": ["base", "{{baseId}}", "table", "{{tableId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "item": [
+        {
+          "name": "List fields",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field"] }
+          }
+        },
+        {
+          "name": "Create a field",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"singleLineText\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field"] }
+          }
+        },
+        {
+          "name": "Get a field",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field/{{fieldId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field", "{{fieldId}}"] }
+          }
+        },
+        {
+          "name": "Update a field",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field/{{fieldId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field", "{{fieldId}}"] }
+          }
+        },
+        {
+          "name": "Convert a field type",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"number\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field/{{fieldId}}/convert", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field", "{{fieldId}}", "convert"] }
+          }
+        },
+        {
+          "name": "Delete a field",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/field/{{fieldId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "field", "{{fieldId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Record",
+      "item": [
+        {
+          "name": "List records",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/table/{{tableId}}/record?take=100&skip=0&fieldKeyType=name&cellFormat=json",
+              "host": ["{{baseUrl}}"],
+              "path": ["table", "{{tableId}}", "record"],
+              "query": [
+                { "key": "take", "value": "100" },
+                { "key": "skip", "value": "0" },
+                { "key": "fieldKeyType", "value": "name" },
+                { "key": "cellFormat", "value": "json" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create records",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"fieldKeyType\": \"name\",\n  \"typecast\": true,\n  \"records\": [\n    { \"fields\": { \"Name\": \"<string>\" } }\n  ]\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/record", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "record"] }
+          }
+        },
+        {
+          "name": "Get a record",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/record/{{recordId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "record", "{{recordId}}"] }
+          }
+        },
+        {
+          "name": "Update a record",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"fieldKeyType\": \"name\",\n  \"record\": { \"fields\": { \"Name\": \"<string>\" } }\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/record/{{recordId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "record", "{{recordId}}"] }
+          }
+        },
+        {
+          "name": "Delete a record",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/record/{{recordId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "record", "{{recordId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "View",
+      "item": [
+        {
+          "name": "List views",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/view", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "view"] }
+          }
+        },
+        {
+          "name": "Create a view",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"grid\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/view", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "view"] }
+          }
+        },
+        {
+          "name": "Get a view",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/view/{{viewId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "view", "{{viewId}}"] }
+          }
+        },
+        {
+          "name": "Delete a view",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/table/{{tableId}}/view/{{viewId}}", "host": ["{{baseUrl}}"], "path": ["table", "{{tableId}}", "view", "{{viewId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attachment",
+      "item": [
+        {
+          "name": "Get an upload signature",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contentType\": \"image/png\",\n  \"contentLength\": 1024\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/attachments/signature", "host": ["{{baseUrl}}"], "path": ["attachments", "signature"] }
+          }
+        },
+        {
+          "name": "Notify upload completion",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/attachments/notify/{{token}}", "host": ["{{baseUrl}}"], "path": ["attachments", "notify", "{{token}}"] }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Teable
+providerId: teable
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- No-Code
+- Database
+- Airtable Alternative
+- Postgres
+- Open Source
+- Plans
+description: >-
+  Teable offers a fully open-source Community Edition (AGPL-3.0) that can be
+  self-hosted for free, plus a managed cloud with per-seat tiers: Free, Pro,
+  and Business, with an Enterprise track. Cloud tiers scale on rows, automation
+  runs, AI credits, and attachment storage, with add-on subscriptions for
+  credits, automation runs, records, and storage on Pro and above. The REST API
+  is available across cloud and self-hosted deployments.
+notes: >-
+  Cloud prices reflect the published teable.ai/pricing page (per-seat, billed
+  yearly where noted). Self-hosting the open-source Community Edition has no
+  license fee; you pay only your own infrastructure. Verify current limits and
+  prices on the pricing page during reconciliation.
+sources:
+- https://teable.io
+- https://teable.ai/pricing
+- https://github.com/teableio/teable
+- https://help.teable.ai/en/api-doc/overview
+plans:
+- id: teable-self-hosted
+  name: Self-Hosted (Community Edition)
+  type: open_source
+  description: >-
+    Open-source Community Edition licensed AGPL-3.0, self-hosted on your own
+    Postgres and infrastructure with full access to the REST API. No license
+    fee; you provide and pay for your own hosting.
+  entries:
+  - label: Community Edition License
+    name: community_edition
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (AGPL-3.0, self-hosted; infrastructure costs are yours)
+    userMultiplied: false
+  elements:
+  - name: Spaces
+  - name: Bases
+  - name: Tables
+  - name: Fields
+  - name: Records
+  - name: Views
+  - name: Attachments
+  - name: REST API
+- id: teable-free
+  name: Free
+  type: free
+  description: >-
+    Entry cloud tier at $0/seat/month with core database, views, app builder,
+    and API access at small scale.
+  entries:
+  - label: Free Seat
+    name: free_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 per seat / month
+    userMultiplied: true
+  - label: Rows
+    name: free_rows
+    type: quota
+    metric: rows
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Automation Runs
+    name: free_automation_runs
+    type: quota
+    metric: runs
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Storage
+    name: free_storage
+    type: quota
+    metric: storage
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1 GB included
+    userMultiplied: false
+  - label: AI Credits
+    name: free_credits
+    type: quota
+    metric: credits
+    limit: 500
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Database & Views
+  - name: App Builder
+  - name: AI Chat & AI Field
+  - name: REST API
+- id: teable-pro
+  name: Pro
+  type: subscription
+  description: >-
+    $10/seat/month billed yearly ($12 monthly) with larger row, automation,
+    storage, and credit allowances plus add-on subscriptions.
+  entries:
+  - label: Pro Seat
+    name: pro_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $10 per seat / month (billed yearly; $12 monthly)
+    userMultiplied: true
+  - label: Rows
+    name: pro_rows
+    type: quota
+    metric: rows
+    limit: 250000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Automation Runs
+    name: pro_automation_runs
+    type: quota
+    metric: runs
+    limit: 25000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Storage
+    name: pro_storage
+    type: quota
+    metric: storage
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 10 GB included
+    userMultiplied: false
+  - label: AI Credits
+    name: pro_credits
+    type: quota
+    metric: credits
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1,000 credits per seat
+    userMultiplied: true
+  elements:
+  - name: All Free features
+  - name: Add-On Subscriptions (credits, runs, records, storage)
+  - name: REST API
+- id: teable-business
+  name: Business
+  type: subscription
+  description: >-
+    $20/seat/month billed yearly ($24 monthly) with the largest allowances and
+    administration controls including SSO, authority matrix, custom app domain,
+    and domain verification.
+  entries:
+  - label: Business Seat
+    name: business_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $20 per seat / month (billed yearly; $24 monthly)
+    userMultiplied: true
+  - label: Rows
+    name: business_rows
+    type: quota
+    metric: rows
+    limit: 1000000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Automation Runs
+    name: business_automation_runs
+    type: quota
+    metric: runs
+    limit: 100000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Storage
+    name: business_storage
+    type: quota
+    metric: storage
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 100 GB included
+    userMultiplied: false
+  - label: AI Credits
+    name: business_credits
+    type: quota
+    metric: credits
+    limit: 2000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 2,000 credits per seat
+    userMultiplied: true
+  elements:
+  - name: All Pro features
+  - name: SSO
+  - name: Authority Matrix
+  - name: Custom App Domain
+  - name: Domain Verification
+- id: teable-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Enterprise Edition and managed offerings with negotiated terms, advanced
+    security, and dedicated support. Contact Teable sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Enterprise Edition
+  - name: Advanced Security & Compliance
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

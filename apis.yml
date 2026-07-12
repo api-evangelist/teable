@@ -173,6 +173,10 @@ apis:
   description: Upload and retrieve file attachments via signed upload flow, then
     reference them from attachment-type fields on records.
 common:
+- type: DomainSecurity
+  url: security/teable-domain-security.yml
+- type: Authentication
+  url: authentication/teable-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/teableio
 - type: LinkedIn
@@ -187,6 +191,8 @@ common:
   url: rate-limits/teable-rate-limits.yml
 - type: FinOps
   url: finops/teable-finops.yml
+- type: Blog
+  url: https://teable.io/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

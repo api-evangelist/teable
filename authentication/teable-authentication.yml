@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/teable-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Personal access token or OAuth access token passed as `Authorization: Bearer
+    {access_token}`.'
+  sources:
+  - openapi/teable-openapi.yml

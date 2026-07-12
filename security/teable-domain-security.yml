@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: teable.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 14 19:21:25 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: help.teable.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 13 19:17:43 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: app.teable.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 13 03:01:27 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+domains:
+- domain: teable.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: teable.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

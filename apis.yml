@@ -173,6 +173,8 @@ apis:
   description: Upload and retrieve file attachments via signed upload flow, then
     reference them from attachment-type fields on records.
 common:
+- type: AgenticAccess
+  url: agentic-access/teable-agentic-access.yml
 - type: DomainSecurity
   url: security/teable-domain-security.yml
 - type: Authentication

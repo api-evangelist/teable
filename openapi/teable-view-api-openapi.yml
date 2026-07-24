@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment View API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: View
+  description: Views over a table.
+paths:
+  /table/{tableId}/view:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getViewList
+      tags:
+      - View
+      summary: List views
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/View'
+    post:
+      operationId: createView
+      tags:
+      - View
+      summary: Create a view
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateViewRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+  /table/{tableId}/view/{viewId}:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    - $ref: '#/components/parameters/viewId'
+    get:
+      operationId: getView
+      tags:
+      - View
+      summary: Get a view
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+    delete:
+      operationId: deleteView
+      tags:
+      - View
+      summary: Delete a view
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - grid
+          - form
+          - kanban
+          - gallery
+          - calendar
+        filter:
+          type: object
+          additionalProperties: true
+        sort:
+          type: object
+          additionalProperties: true
+        group:
+          type: object
+          additionalProperties: true
+    CreateViewRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - grid
+          - form
+          - kanban
+          - gallery
+          - calendar
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    viewId:
+      name: viewId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

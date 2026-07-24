@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment Table API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Table
+  description: Spreadsheet-like tables within a base.
+paths:
+  /base/{baseId}/table:
+    parameters:
+    - $ref: '#/components/parameters/baseId'
+    get:
+      operationId: getTableList
+      tags:
+      - Table
+      summary: List tables in a base
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+    post:
+      operationId: createTable
+      tags:
+      - Table
+      summary: Create a table
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTableRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /base/{baseId}/table/{tableId}:
+    parameters:
+    - $ref: '#/components/parameters/baseId'
+    - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getTable
+      tags:
+      - Table
+      summary: Get a table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+    delete:
+      operationId: deleteTable
+      tags:
+      - Table
+      summary: Delete a table
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    baseId:
+      name: baseId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    CreateTableRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateFieldRequest'
+    Table:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dbTableName:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+    CreateFieldRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

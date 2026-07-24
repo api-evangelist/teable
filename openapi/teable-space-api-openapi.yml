@@ -1,0 +1,189 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment Space API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Space
+  description: Top-level workspaces.
+paths:
+  /spaces:
+    get:
+      operationId: getSpaceList
+      tags:
+      - Space
+      summary: List spaces
+      description: Get the list of spaces the authenticated user can access.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Space'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSpace
+      tags:
+      - Space
+      summary: Create a space
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpaceRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /spaces/{spaceId}:
+    parameters:
+    - $ref: '#/components/parameters/spaceId'
+    get:
+      operationId: getSpace
+      tags:
+      - Space
+      summary: Get a space
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateSpace
+      tags:
+      - Space
+      summary: Update a space
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpaceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    delete:
+      operationId: deleteSpace
+      tags:
+      - Space
+      summary: Delete a space
+      responses:
+        '200':
+          description: OK
+  /spaces/{spaceId}/collaborators:
+    parameters:
+    - $ref: '#/components/parameters/spaceId'
+    get:
+      operationId: listSpaceCollaborators
+      tags:
+      - Space
+      summary: List space collaborators
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collaborator'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    spaceId:
+      name: spaceId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Space:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+    UpdateSpaceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    Collaborator:
+      type: object
+      properties:
+        userId:
+          type: string
+        userName:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+        code:
+          type: string
+    CreateSpaceRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

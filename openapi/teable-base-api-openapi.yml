@@ -1,0 +1,156 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment Base API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Base
+  description: Postgres-backed databases within a space.
+paths:
+  /bases:
+    get:
+      operationId: getBaseList
+      tags:
+      - Base
+      summary: List bases
+      description: List all bases accessible to the authenticated user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Base'
+    post:
+      operationId: createBase
+      tags:
+      - Base
+      summary: Create a base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBaseRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+  /bases/{baseId}:
+    parameters:
+    - $ref: '#/components/parameters/baseId'
+    get:
+      operationId: getBase
+      tags:
+      - Base
+      summary: Get a base
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+    patch:
+      operationId: updateBase
+      tags:
+      - Base
+      summary: Update a base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBaseRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+    delete:
+      operationId: deleteBase
+      tags:
+      - Base
+      summary: Delete a base
+      responses:
+        '200':
+          description: OK
+  /bases/{baseId}/duplicate:
+    parameters:
+    - $ref: '#/components/parameters/baseId'
+    post:
+      operationId: duplicateBase
+      tags:
+      - Base
+      summary: Duplicate a base
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+components:
+  schemas:
+    UpdateBaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+    Base:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        spaceId:
+          type: string
+        icon:
+          type: string
+    CreateBaseRequest:
+      type: object
+      required:
+      - spaceId
+      properties:
+        spaceId:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+  parameters:
+    baseId:
+      name: baseId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

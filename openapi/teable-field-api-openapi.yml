@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment Field API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Field
+  description: Columns within a table.
+paths:
+  /table/{tableId}/field:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getFieldList
+      tags:
+      - Field
+      summary: List fields
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Field'
+    post:
+      operationId: createField
+      tags:
+      - Field
+      summary: Create a field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+  /table/{tableId}/field/{fieldId}:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    - $ref: '#/components/parameters/fieldId'
+    get:
+      operationId: getField
+      tags:
+      - Field
+      summary: Get a field
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    patch:
+      operationId: updateField
+      tags:
+      - Field
+      summary: Update a field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFieldRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    delete:
+      operationId: deleteField
+      tags:
+      - Field
+      summary: Delete a field
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/field/{fieldId}/convert:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    - $ref: '#/components/parameters/fieldId'
+    put:
+      operationId: convertField
+      tags:
+      - Field
+      summary: Convert a field type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+components:
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    fieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Field:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Field type, e.g. singleLineText, longText, number, singleSelect, multipleSelect, date, checkbox, attachment, link, formula, user, rating, rollup, createdTime, lastModifiedTime, autoNumber.
+        dbFieldName:
+          type: string
+        isPrimary:
+          type: boolean
+        options:
+          type: object
+          additionalProperties: true
+    UpdateFieldRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+    CreateFieldRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

@@ -1,0 +1,107 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Attachment
+  description: File attachments.
+paths:
+  /attachments/signature:
+    post:
+      operationId: getAttachmentSignature
+      tags:
+      - Attachment
+      summary: Get an upload signature
+      description: Request a signed URL token used to upload an attachment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentSignatureRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentSignatureResponse'
+  /attachments/notify/{token}:
+    parameters:
+    - name: token
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: notifyAttachment
+      tags:
+      - Attachment
+      summary: Notify upload completion
+      description: Notify the server that an attachment upload has finished and retrieve its metadata.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+components:
+  schemas:
+    Attachment:
+      type: object
+      properties:
+        token:
+          type: string
+        size:
+          type: integer
+        mimetype:
+          type: string
+        presignedUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    AttachmentSignatureRequest:
+      type: object
+      required:
+      - contentType
+      - contentLength
+      properties:
+        contentType:
+          type: string
+        contentLength:
+          type: integer
+        type:
+          type: integer
+    AttachmentSignatureResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        token:
+          type: string
+        requestHeaders:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

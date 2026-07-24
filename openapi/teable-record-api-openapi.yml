@@ -1,0 +1,310 @@
+openapi: 3.0.1
+info:
+  title: Teable Attachment Record API
+  description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://app.teable.io/api
+  description: Teable Cloud
+- url: https://app.teable.ai/api
+  description: Teable Cloud (alternate host)
+security:
+- bearerAuth: []
+tags:
+- name: Record
+  description: Rows within a table.
+paths:
+  /table/{tableId}/record:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getRecords
+      tags:
+      - Record
+      summary: List records
+      description: Get a paginated list of records from a table with optional filtering, sorting, searching, projection, and view scoping.
+      parameters:
+      - name: viewId
+        in: query
+        description: Restrict and order results according to a specific view.
+        schema:
+          type: string
+      - name: take
+        in: query
+        description: Maximum number of records to return (max 1000).
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: skip
+        in: query
+        description: Number of records to skip for pagination.
+        schema:
+          type: integer
+          default: 0
+      - name: filter
+        in: query
+        description: JSON filter set describing query conditions.
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: JSON sort specification.
+        schema:
+          type: string
+      - name: groupBy
+        in: query
+        description: JSON group specification.
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: Search term applied across (optionally specified) fields.
+        schema:
+          type: string
+      - name: projection
+        in: query
+        description: Subset of fields to return.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: fieldKeyType
+        in: query
+        description: Whether field keys are field name, id, or dbFieldName.
+        schema:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+      - name: cellFormat
+        in: query
+        description: Cell value format in the response.
+        schema:
+          type: string
+          enum:
+          - json
+          - text
+          default: json
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRecords
+      tags:
+      - Record
+      summary: Create records
+      description: Create one or more records in a table.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecordsRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordListResponse'
+    delete:
+      operationId: deleteRecords
+      tags:
+      - Record
+      summary: Delete multiple records
+      parameters:
+      - name: recordIds
+        in: query
+        required: true
+        description: The ids of the records to delete.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/record/{recordId}:
+    parameters:
+    - $ref: '#/components/parameters/tableId'
+    - $ref: '#/components/parameters/recordId'
+    get:
+      operationId: getRecord
+      tags:
+      - Record
+      summary: Get a record
+      parameters:
+      - name: fieldKeyType
+        in: query
+        schema:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+      - name: cellFormat
+        in: query
+        schema:
+          type: string
+          enum:
+          - json
+          - text
+          default: json
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecord
+      tags:
+      - Record
+      summary: Update a record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRecordRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+    delete:
+      operationId: deleteRecord
+      tags:
+      - Record
+      summary: Delete a record
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    CreateRecordsRequest:
+      type: object
+      required:
+      - records
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+          description: Automatically coerce field values to the correct type.
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              fields:
+                type: object
+                additionalProperties: true
+    RecordListResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+    UpdateRecordRequest:
+      type: object
+      required:
+      - record
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+        record:
+          type: object
+          properties:
+            fields:
+              type: object
+              additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+        code:
+          type: string
+    Record:
+      type: object
+      properties:
+        id:
+          type: string
+        fields:
+          type: object
+          additionalProperties: true
+        createdTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token or OAuth access token passed as `Authorization: Bearer {access_token}`.'

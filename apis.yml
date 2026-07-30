@@ -7,7 +7,20 @@ description: Teable is an open-source, no-code database platform built on Postgr
   documented REST API for managing spaces, bases, tables, fields, records, views,
   and attachments, scaling to millions of rows while keeping data in a real Postgres
   database.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/teable.png
 tags:
 - No-Code
 - Database
@@ -18,160 +31,300 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: teable:teable-spaces-api
-  name: Teable Spaces API
-  tags:
-  - Spaces
-  - Workspaces
-  - Collaborators
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: teable:teable-attachment-api
+  name: Teable Attachment API
+  description: File attachments.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/overview
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/space-list
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Create, list, update, and delete spaces (top-level workspaces) and manage
-    space-level collaborators and their roles.
-- aid: teable:teable-bases-api
-  name: Teable Bases API
   tags:
-  - Bases
-  - Databases
-  - Sharing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Attachment
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-attachment-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-base-api
+  name: Teable Base API
+  description: Postgres-backed databases within a space.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/base-get-all
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/base-get-all
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Manage bases (the Postgres-backed databases inside a space), including
-    create, duplicate, delete, base collaborators, and shareable links.
-- aid: teable:teable-tables-api
-  name: Teable Tables API
   tags:
-  - Tables
-  - Schema
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Base
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-base-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-field-api
+  name: Teable Field API
+  description: Columns within a table.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/table-list
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/table-list
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Create, list, get, update, duplicate, and delete tables within a base,
-    the spreadsheet-like containers that hold fields and records.
-- aid: teable:teable-fields-api
-  name: Teable Fields API
   tags:
-  - Fields
-  - Columns
-  - Schema
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Field
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-field-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-record-api
+  name: Teable Record API
+  description: Rows within a table.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/field-list
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/field-list
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Define and manage table fields (columns) across Teable's rich field
-    types, including create, update, convert field type, duplicate, and delete.
-- aid: teable:teable-records-api
-  name: Teable Records API
   tags:
-  - Records
-  - Rows
-  - CRUD
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Record
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-record-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-space-api
+  name: Teable Space API
+  description: Top-level workspaces.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/record-get-list
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/record-get-list
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Full CRUD over records (rows) with rich querying - filter, orderBy,
-    search, projection, pagination, fieldKeyType and cellFormat controls - plus batch
-    create/update/delete, duplicate, and record history.
-- aid: teable:teable-views-api
-  name: Teable Views API
   tags:
-  - Views
-  - Grid
-  - Kanban
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Space
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-space-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-table-api
+  name: Teable Table API
+  description: Spreadsheet-like tables within a base.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
-  properties:
-  - url: https://help.teable.ai/en/api-doc/view-list
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/view-list
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Create and manage views (grid, form, Kanban, gallery, calendar) over
-    a table, including filter, sort, group configuration and shareable view links.
-- aid: teable:teable-attachments-api
-  name: Teable Attachments API
   tags:
-  - Attachments
-  - Files
-  - Uploads
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Table
+  properties:
+  - type: OpenAPI
+    url: openapi/teable-table-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+- aid: teable:teable-view-api
+  name: Teable View API
+  description: Views over a table.
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
+  tags:
+  - View
   properties:
-  - url: https://help.teable.ai/en/api-doc/attachment-upload
-    type: Documentation
-  - url: https://help.teable.ai/en/api-doc/attachment-upload
-    type: APIReference
-  - url: openapi/teable-openapi.yml
-    type: OpenAPI
-  - url: collections/teable.postman_collection.json
-    type: PostmanCollection
-  - url: collections/teable.opencollection.json
-    type: OpenCollection
-  description: Upload and retrieve file attachments via signed upload flow, then
-    reference them from attachment-type fields on records.
+  - type: OpenAPI
+    url: openapi/teable-view-api-openapi.yml
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/overview
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/space-list
+  - type: PostmanCollection
+    url: collections/teable.postman_collection.json
+  - type: OpenCollection
+    url: collections/teable.opencollection.json
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/base-get-all
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/table-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/field-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/record-get-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/view-list
+  - type: Documentation
+    url: https://help.teable.ai/en/api-doc/attachment-upload
+  - type: APIReference
+    url: https://help.teable.ai/en/api-doc/attachment-upload
 common:
 - type: AgenticAccess
   url: agentic-access/teable-agentic-access.yml

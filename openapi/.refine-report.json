@@ -1,0 +1,26 @@
+{
+  "provider": "teable",
+  "sources": [
+    "teable-attachment-api-openapi.yml",
+    "teable-base-api-openapi.yml",
+    "teable-field-api-openapi.yml",
+    "teable-record-api-openapi.yml",
+    "teable-space-api-openapi.yml",
+    "teable-table-api-openapi.yml",
+    "teable-view-api-openapi.yml"
+  ],
+  "outputs": [
+    "teable-attachment-api-openapi.yml",
+    "teable-base-api-openapi.yml",
+    "teable-field-api-openapi.yml",
+    "teable-record-api-openapi.yml",
+    "teable-space-api-openapi.yml",
+    "teable-table-api-openapi.yml",
+    "teable-view-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

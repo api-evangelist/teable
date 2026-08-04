@@ -1,0 +1,1007 @@
+openapi: 3.0.1
+info:
+  title: Teable API
+  description: >-
+    REST API for Teable, the open-source no-code database built on PostgreSQL.
+    Manage spaces, bases, tables, fields, records, views, and attachments.
+    Authentication uses a Bearer access token (personal access token or OAuth
+    access token) supplied in the Authorization header. All paths are relative
+    to the API base and begin with /api.
+  termsOfService: https://teable.io/terms
+  contact:
+    name: Teable Support
+    url: https://help.teable.ai
+  license:
+    name: AGPL-3.0 (Community Edition)
+    url: https://github.com/teableio/teable/blob/main/LICENSE
+  version: '1.0'
+servers:
+  - url: https://app.teable.io/api
+    description: Teable Cloud
+  - url: https://app.teable.ai/api
+    description: Teable Cloud (alternate host)
+security:
+  - bearerAuth: []
+tags:
+  - name: Space
+    description: Top-level workspaces.
+  - name: Base
+    description: Postgres-backed databases within a space.
+  - name: Table
+    description: Spreadsheet-like tables within a base.
+  - name: Field
+    description: Columns within a table.
+  - name: Record
+    description: Rows within a table.
+  - name: View
+    description: Views over a table.
+  - name: Attachment
+    description: File attachments.
+paths:
+  /spaces:
+    get:
+      operationId: getSpaceList
+      tags:
+        - Space
+      summary: List spaces
+      description: Get the list of spaces the authenticated user can access.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Space'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSpace
+      tags:
+        - Space
+      summary: Create a space
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpaceRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /spaces/{spaceId}:
+    parameters:
+      - $ref: '#/components/parameters/spaceId'
+    get:
+      operationId: getSpace
+      tags:
+        - Space
+      summary: Get a space
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateSpace
+      tags:
+        - Space
+      summary: Update a space
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpaceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    delete:
+      operationId: deleteSpace
+      tags:
+        - Space
+      summary: Delete a space
+      responses:
+        '200':
+          description: OK
+  /spaces/{spaceId}/collaborators:
+    parameters:
+      - $ref: '#/components/parameters/spaceId'
+    get:
+      operationId: listSpaceCollaborators
+      tags:
+        - Space
+      summary: List space collaborators
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collaborator'
+  /bases:
+    get:
+      operationId: getBaseList
+      tags:
+        - Base
+      summary: List bases
+      description: List all bases accessible to the authenticated user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Base'
+    post:
+      operationId: createBase
+      tags:
+        - Base
+      summary: Create a base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBaseRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+  /bases/{baseId}:
+    parameters:
+      - $ref: '#/components/parameters/baseId'
+    get:
+      operationId: getBase
+      tags:
+        - Base
+      summary: Get a base
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+    patch:
+      operationId: updateBase
+      tags:
+        - Base
+      summary: Update a base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBaseRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+    delete:
+      operationId: deleteBase
+      tags:
+        - Base
+      summary: Delete a base
+      responses:
+        '200':
+          description: OK
+  /bases/{baseId}/duplicate:
+    parameters:
+      - $ref: '#/components/parameters/baseId'
+    post:
+      operationId: duplicateBase
+      tags:
+        - Base
+      summary: Duplicate a base
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Base'
+  /base/{baseId}/table:
+    parameters:
+      - $ref: '#/components/parameters/baseId'
+    get:
+      operationId: getTableList
+      tags:
+        - Table
+      summary: List tables in a base
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+    post:
+      operationId: createTable
+      tags:
+        - Table
+      summary: Create a table
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTableRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /base/{baseId}/table/{tableId}:
+    parameters:
+      - $ref: '#/components/parameters/baseId'
+      - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getTable
+      tags:
+        - Table
+      summary: Get a table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+    delete:
+      operationId: deleteTable
+      tags:
+        - Table
+      summary: Delete a table
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/field:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getFieldList
+      tags:
+        - Field
+      summary: List fields
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Field'
+    post:
+      operationId: createField
+      tags:
+        - Field
+      summary: Create a field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+  /table/{tableId}/field/{fieldId}:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+      - $ref: '#/components/parameters/fieldId'
+    get:
+      operationId: getField
+      tags:
+        - Field
+      summary: Get a field
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    patch:
+      operationId: updateField
+      tags:
+        - Field
+      summary: Update a field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFieldRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    delete:
+      operationId: deleteField
+      tags:
+        - Field
+      summary: Delete a field
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/field/{fieldId}/convert:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+      - $ref: '#/components/parameters/fieldId'
+    put:
+      operationId: convertField
+      tags:
+        - Field
+      summary: Convert a field type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+  /table/{tableId}/record:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getRecords
+      tags:
+        - Record
+      summary: List records
+      description: >-
+        Get a paginated list of records from a table with optional filtering,
+        sorting, searching, projection, and view scoping.
+      parameters:
+        - name: viewId
+          in: query
+          description: Restrict and order results according to a specific view.
+          schema:
+            type: string
+        - name: take
+          in: query
+          description: Maximum number of records to return (max 1000).
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+        - name: skip
+          in: query
+          description: Number of records to skip for pagination.
+          schema:
+            type: integer
+            default: 0
+        - name: filter
+          in: query
+          description: JSON filter set describing query conditions.
+          schema:
+            type: string
+        - name: orderBy
+          in: query
+          description: JSON sort specification.
+          schema:
+            type: string
+        - name: groupBy
+          in: query
+          description: JSON group specification.
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Search term applied across (optionally specified) fields.
+          schema:
+            type: string
+        - name: projection
+          in: query
+          description: Subset of fields to return.
+          schema:
+            type: array
+            items:
+              type: string
+        - name: fieldKeyType
+          in: query
+          description: Whether field keys are field name, id, or dbFieldName.
+          schema:
+            type: string
+            enum:
+              - name
+              - id
+              - dbFieldName
+            default: name
+        - name: cellFormat
+          in: query
+          description: Cell value format in the response.
+          schema:
+            type: string
+            enum:
+              - json
+              - text
+            default: json
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRecords
+      tags:
+        - Record
+      summary: Create records
+      description: Create one or more records in a table.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecordsRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordListResponse'
+    delete:
+      operationId: deleteRecords
+      tags:
+        - Record
+      summary: Delete multiple records
+      parameters:
+        - name: recordIds
+          in: query
+          required: true
+          description: The ids of the records to delete.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/record/{recordId}:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+      - $ref: '#/components/parameters/recordId'
+    get:
+      operationId: getRecord
+      tags:
+        - Record
+      summary: Get a record
+      parameters:
+        - name: fieldKeyType
+          in: query
+          schema:
+            type: string
+            enum:
+              - name
+              - id
+              - dbFieldName
+            default: name
+        - name: cellFormat
+          in: query
+          schema:
+            type: string
+            enum:
+              - json
+              - text
+            default: json
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecord
+      tags:
+        - Record
+      summary: Update a record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRecordRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+    delete:
+      operationId: deleteRecord
+      tags:
+        - Record
+      summary: Delete a record
+      responses:
+        '200':
+          description: OK
+  /table/{tableId}/view:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+    get:
+      operationId: getViewList
+      tags:
+        - View
+      summary: List views
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/View'
+    post:
+      operationId: createView
+      tags:
+        - View
+      summary: Create a view
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateViewRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+  /table/{tableId}/view/{viewId}:
+    parameters:
+      - $ref: '#/components/parameters/tableId'
+      - $ref: '#/components/parameters/viewId'
+    get:
+      operationId: getView
+      tags:
+        - View
+      summary: Get a view
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+    delete:
+      operationId: deleteView
+      tags:
+        - View
+      summary: Delete a view
+      responses:
+        '200':
+          description: OK
+  /attachments/signature:
+    post:
+      operationId: getAttachmentSignature
+      tags:
+        - Attachment
+      summary: Get an upload signature
+      description: Request a signed URL token used to upload an attachment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachmentSignatureRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentSignatureResponse'
+  /attachments/notify/{token}:
+    parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: notifyAttachment
+      tags:
+        - Attachment
+      summary: Notify upload completion
+      description: Notify the server that an attachment upload has finished and retrieve its metadata.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Personal access token or OAuth access token passed as
+        `Authorization: Bearer {access_token}`.
+  parameters:
+    spaceId:
+      name: spaceId
+      in: path
+      required: true
+      schema:
+        type: string
+    baseId:
+      name: baseId
+      in: path
+      required: true
+      schema:
+        type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    fieldId:
+      name: fieldId
+      in: path
+      required: true
+      schema:
+        type: string
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        type: string
+    viewId:
+      name: viewId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Space:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+    CreateSpaceRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+    UpdateSpaceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    Collaborator:
+      type: object
+      properties:
+        userId:
+          type: string
+        userName:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+    Base:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        spaceId:
+          type: string
+        icon:
+          type: string
+    CreateBaseRequest:
+      type: object
+      required:
+        - spaceId
+      properties:
+        spaceId:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+    UpdateBaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+    Table:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dbTableName:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+    CreateTableRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateFieldRequest'
+    Field:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: >-
+            Field type, e.g. singleLineText, longText, number, singleSelect,
+            multipleSelect, date, checkbox, attachment, link, formula, user,
+            rating, rollup, createdTime, lastModifiedTime, autoNumber.
+        dbFieldName:
+          type: string
+        isPrimary:
+          type: boolean
+        options:
+          type: object
+          additionalProperties: true
+    CreateFieldRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+    UpdateFieldRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+    Record:
+      type: object
+      properties:
+        id:
+          type: string
+        fields:
+          type: object
+          additionalProperties: true
+        createdTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+    RecordListResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+    CreateRecordsRequest:
+      type: object
+      required:
+        - records
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+            - name
+            - id
+            - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+          description: Automatically coerce field values to the correct type.
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              fields:
+                type: object
+                additionalProperties: true
+    UpdateRecordRequest:
+      type: object
+      required:
+        - record
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+            - name
+            - id
+            - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+        record:
+          type: object
+          properties:
+            fields:
+              type: object
+              additionalProperties: true
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - grid
+            - form
+            - kanban
+            - gallery
+            - calendar
+        filter:
+          type: object
+          additionalProperties: true
+        sort:
+          type: object
+          additionalProperties: true
+        group:
+          type: object
+          additionalProperties: true
+    CreateViewRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - grid
+            - form
+            - kanban
+            - gallery
+            - calendar
+    AttachmentSignatureRequest:
+      type: object
+      required:
+        - contentType
+        - contentLength
+      properties:
+        contentType:
+          type: string
+        contentLength:
+          type: integer
+        type:
+          type: integer
+    AttachmentSignatureResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        token:
+          type: string
+        requestHeaders:
+          type: object
+          additionalProperties: true
+    Attachment:
+      type: object
+      properties:
+        token:
+          type: string
+        size:
+          type: integer
+        mimetype:
+          type: string
+        presignedUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+        code:
+          type: string

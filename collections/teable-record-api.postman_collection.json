@@ -1,0 +1,1009 @@
+{
+  "item": [
+    {
+      "id": "079b0edc-329d-4cb1-a549-8c75180ab6f8",
+      "name": "Record",
+      "description": {
+        "content": "Rows within a table.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7008c72a-02c2-47d2-a957-d1b537ce9fb4",
+          "name": "List records",
+          "request": {
+            "name": "List records",
+            "description": {
+              "content": "Get a paginated list of records from a table with optional filtering, sorting, searching, projection, and view scoping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "viewId",
+                  "value": "<string>",
+                  "description": "Restrict and order results according to a specific view."
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "100",
+                  "description": "Maximum number of records to return (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "JSON filter set describing query conditions."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "JSON sort specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "JSON group specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term applied across (optionally specified) fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "projection",
+                  "value": "<string>",
+                  "description": "Subset of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "projection",
+                  "value": "<string>",
+                  "description": "Subset of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fieldKeyType",
+                  "value": "name",
+                  "description": "Whether field keys are field name, id, or dbFieldName."
+                },
+                {
+                  "disabled": false,
+                  "key": "cellFormat",
+                  "value": "json",
+                  "description": "Cell value format in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85d6f33a-0e98-4232-b4dc-6d03640041a0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fieldKeyType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "cellFormat",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": 4801,\n        \"key_1\": 624,\n        \"key_2\": 5877\n      },\n      \"createdTime\": \"2020-05-19T06:38:05.077Z\",\n      \"lastModifiedTime\": \"2022-04-02T21:28:26.876Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": 6917.012053011037,\n        \"key_1\": true,\n        \"key_2\": 7713.595986235271\n      },\n      \"createdTime\": \"1981-08-09T09:19:04.516Z\",\n      \"lastModifiedTime\": \"2012-08-09T23:08:45.510Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4523425e-ac5e-4889-867d-0624802f858c",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "viewId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fieldKeyType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "cellFormat",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"status\": 827,\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e59f858-a348-487e-8002-6fdcfbf12312",
+          "name": "Create records",
+          "request": {
+            "name": "Create records",
+            "description": {
+              "content": "Create one or more records in a table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"records\": [\n    {\n      \"fields\": {\n        \"key_0\": 7838.80648654368\n      }\n    },\n    {\n      \"fields\": {\n        \"key_0\": true,\n        \"key_1\": 1060\n      }\n    }\n  ],\n  \"fieldKeyType\": \"name\",\n  \"typecast\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aaf1d862-9e8d-4210-a5d9-84f2c93a8021",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    {\n      \"fields\": {\n        \"key_0\": 9556.918183386786,\n        \"key_1\": false\n      }\n    },\n    {\n      \"fields\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"fieldKeyType\": \"name\",\n  \"typecast\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": 9022.409379225612\n      },\n      \"createdTime\": \"2025-01-22T10:40:32.206Z\",\n      \"lastModifiedTime\": \"2018-11-15T22:07:42.603Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": false\n      },\n      \"createdTime\": \"1974-10-15T07:15:04.681Z\",\n      \"lastModifiedTime\": \"1987-03-14T11:11:43.667Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6139f511-1c28-4b5b-8056-d743ddf1501a",
+          "name": "Delete multiple records",
+          "request": {
+            "name": "Delete multiple records",
+            "description": {},
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "recordIds",
+                  "value": "<string>",
+                  "description": "(Required) The ids of the records to delete."
+                },
+                {
+                  "disabled": false,
+                  "key": "recordIds",
+                  "value": "<string>",
+                  "description": "(Required) The ids of the records to delete."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ea5f578-581c-42fb-9d89-cd768344a017",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recordIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recordIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44b89a97-93a7-4b58-98f7-64fbbf42c82d",
+          "name": "Get a record",
+          "request": {
+            "name": "Get a record",
+            "description": {},
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fieldKeyType",
+                  "value": "name"
+                },
+                {
+                  "disabled": false,
+                  "key": "cellFormat",
+                  "value": "json"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3c9c510-1181-40d4-9e68-c29897b5666c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fieldKeyType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "cellFormat",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9726,\n    \"key_2\": false\n  },\n  \"createdTime\": \"1988-09-04T19:41:45.849Z\",\n  \"lastModifiedTime\": \"1995-08-15T00:22:10.616Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "423e03a6-06fc-414d-81cd-e0984e28833d",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fieldKeyType",
+                      "value": "name"
+                    },
+                    {
+                      "key": "cellFormat",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"status\": 827,\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "226460ad-518b-4f5c-afb7-ce49ca45c2ee",
+          "name": "Update a record",
+          "request": {
+            "name": "Update a record",
+            "description": {},
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"record\": {\n    \"fields\": {\n      \"key_0\": 7567,\n      \"key_1\": \"string\"\n    }\n  },\n  \"fieldKeyType\": \"name\",\n  \"typecast\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b791509f-f0cd-42ba-a27e-cc956362c0be",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"record\": {\n    \"fields\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    }\n  },\n  \"fieldKeyType\": \"name\",\n  \"typecast\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9726,\n    \"key_2\": false\n  },\n  \"createdTime\": \"1988-09-04T19:41:45.849Z\",\n  \"lastModifiedTime\": \"1995-08-15T00:22:10.616Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a860399-cfdf-472a-bf01-06bfc5606c02",
+          "name": "Delete a record",
+          "request": {
+            "name": "Delete a record",
+            "description": {},
+            "url": {
+              "path": [
+                "table",
+                ":tableId",
+                "record",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf6db5b3-9b77-4bb7-b445-010337dbeebf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":tableId",
+                    "record",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.teable.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5bda274e-0604-42fd-a715-05be3d1bf523",
+    "name": "Teable Attachment Record API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.\n\nContact Support:\n Name: Teable Support",
+      "type": "text/plain"
+    }
+  }
+}

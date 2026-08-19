@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment Base API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Base",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/bases"
+          },
+          "docs": "List all bases accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/bases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a base"
+        },
+        {
+          "info": {
+            "name": "Get a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/bases/:baseId",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a base"
+        },
+        {
+          "info": {
+            "name": "Update a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/bases/:baseId",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a base"
+        },
+        {
+          "info": {
+            "name": "Delete a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/bases/:baseId",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a base"
+        },
+        {
+          "info": {
+            "name": "Duplicate a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/bases/:baseId/duplicate",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Duplicate a base"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an upload signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/attachments/signature",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a signed URL token used to upload an attachment."
+        },
+        {
+          "info": {
+            "name": "Notify upload completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/attachments/notify/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Notify the server that an attachment upload has finished and retrieve its metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

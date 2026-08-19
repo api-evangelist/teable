@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment Space API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Space",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List spaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/spaces"
+          },
+          "docs": "Get the list of spaces the authenticated user can access."
+        },
+        {
+          "info": {
+            "name": "Create a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/spaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a space"
+        },
+        {
+          "info": {
+            "name": "Get a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/spaces/:spaceId",
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a space"
+        },
+        {
+          "info": {
+            "name": "Update a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/spaces/:spaceId",
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a space"
+        },
+        {
+          "info": {
+            "name": "Delete a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/spaces/:spaceId",
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a space"
+        },
+        {
+          "info": {
+            "name": "List space collaborators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/spaces/:spaceId/collaborators",
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List space collaborators"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

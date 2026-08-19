@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment Field API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Field",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/field",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List fields"
+        },
+        {
+          "info": {
+            "name": "Create a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/:tableId/field",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a field"
+        },
+        {
+          "info": {
+            "name": "Get a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/field/:fieldId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a field"
+        },
+        {
+          "info": {
+            "name": "Update a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/table/:tableId/field/:fieldId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a field"
+        },
+        {
+          "info": {
+            "name": "Delete a field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/table/:tableId/field/:fieldId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a field"
+        },
+        {
+          "info": {
+            "name": "Convert a field type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.teable.io/api/table/:tableId/field/:fieldId/convert",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert a field type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

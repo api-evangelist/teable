@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "c3b1c9ac-126c-4304-be60-d79b26ad8265",
+      "name": "Attachment",
+      "description": {
+        "content": "File attachments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd9aa46a-4558-4582-8ebc-cf6494f7d03a",
+          "name": "Get an upload signature",
+          "request": {
+            "name": "Get an upload signature",
+            "description": {
+              "content": "Request a signed URL token used to upload an attachment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "attachments",
+                "signature"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contentType\": \"<string>\",\n  \"contentLength\": \"<integer>\",\n  \"type\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2a92de8-1d5e-4b44-b8c5-d998d08eb41c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachments",
+                    "signature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\",\n  \"contentLength\": \"<integer>\",\n  \"type\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\",\n  \"token\": \"string\",\n  \"requestHeaders\": {\n    \"key_0\": 7535.280728047344,\n    \"key_1\": 2636.567949491335,\n    \"key_2\": 8904.800214710209,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8649d55-6d48-4281-a304-31dde44f4e7f",
+          "name": "Notify upload completion",
+          "request": {
+            "name": "Notify upload completion",
+            "description": {
+              "content": "Notify the server that an attachment upload has finished and retrieve its metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "attachments",
+                "notify",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df0a25a3-dbee-45ac-94cf-712369dbfcbc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachments",
+                    "notify",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"size\": 1332,\n  \"mimetype\": \"string\",\n  \"presignedUrl\": \"string\",\n  \"width\": 8465,\n  \"height\": 6361\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.teable.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa6e5da2-bbab-4c13-bf5a-ff1d209f7c87",
+    "name": "Teable Attachment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.\n\nContact Support:\n Name: Teable Support",
+      "type": "text/plain"
+    }
+  }
+}

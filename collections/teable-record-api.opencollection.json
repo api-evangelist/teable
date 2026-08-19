@@ -1,0 +1,231 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment Record API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Record",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/record",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "query",
+                "description": "Restrict and order results according to a specific view."
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (max 1000)."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON filter set describing query conditions."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "JSON sort specification."
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "JSON group specification."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term applied across (optionally specified) fields."
+              },
+              {
+                "name": "projection",
+                "value": "",
+                "type": "query",
+                "description": "Subset of fields to return."
+              },
+              {
+                "name": "fieldKeyType",
+                "value": "",
+                "type": "query",
+                "description": "Whether field keys are field name, id, or dbFieldName."
+              },
+              {
+                "name": "cellFormat",
+                "value": "",
+                "type": "query",
+                "description": "Cell value format in the response."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of records from a table with optional filtering, sorting, searching, projection, and view scoping."
+        },
+        {
+          "info": {
+            "name": "Create records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/:tableId/record",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one or more records in a table."
+        },
+        {
+          "info": {
+            "name": "Delete multiple records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/table/:tableId/record",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordIds",
+                "value": "",
+                "type": "query",
+                "description": "The ids of the records to delete."
+              }
+            ]
+          },
+          "docs": "Delete multiple records"
+        },
+        {
+          "info": {
+            "name": "Get a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/record/:recordId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldKeyType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cellFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a record"
+        },
+        {
+          "info": {
+            "name": "Update a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.teable.io/api/table/:tableId/record/:recordId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a record"
+        },
+        {
+          "info": {
+            "name": "Delete a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/table/:tableId/record/:recordId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

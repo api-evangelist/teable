@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment Table API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tables in a base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/base/:baseId/table",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tables in a base"
+        },
+        {
+          "info": {
+            "name": "Create a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/base/:baseId/table",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table"
+        },
+        {
+          "info": {
+            "name": "Get a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/base/:baseId/table/:tableId",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a table"
+        },
+        {
+          "info": {
+            "name": "Delete a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/base/:baseId/table/:tableId",
+            "params": [
+              {
+                "name": "baseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

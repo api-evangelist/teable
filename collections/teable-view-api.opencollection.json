@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teable Attachment View API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "View",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/view",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List views"
+        },
+        {
+          "info": {
+            "name": "Create a view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.teable.io/api/table/:tableId/view",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a view"
+        },
+        {
+          "info": {
+            "name": "Get a view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.teable.io/api/table/:tableId/view/:viewId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a view"
+        },
+        {
+          "info": {
+            "name": "Delete a view",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.teable.io/api/table/:tableId/view/:viewId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a view"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

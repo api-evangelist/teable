@@ -26,6 +26,12 @@ tags:
 - Database
 - Airtable Alternative
 - Postgres
+- Open-Source
+tags_raw:
+- No-Code
+- Database
+- Airtable Alternative
+- Postgres
 - Open Source
 created: '2026-06-20'
 modified: '2026-06-20'
@@ -289,6 +295,8 @@ apis:
   humanURL: https://help.teable.ai/en/api-doc/overview
   baseURL: https://app.teable.io/api
   tags:
+  - Views
+  tags_raw:
   - View
   properties:
   - type: OpenAPI

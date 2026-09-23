@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Teable Attachment Table API
+  title: Teable Table API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
   termsOfService: https://teable.io/terms
   contact:
@@ -81,35 +81,7 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
-    baseId:
-      name: baseId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    CreateTableRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateFieldRequest'
     Table:
       type: object
       properties:
@@ -136,6 +108,34 @@ components:
         options:
           type: object
           additionalProperties: true
+    CreateTableRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateFieldRequest'
+  parameters:
+    baseId:
+      name: baseId
+      in: path
+      required: true
+      schema:
+        type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

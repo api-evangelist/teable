@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Teable Attachment Field API
+  title: Teable Field API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
   termsOfService: https://teable.io/terms
   contact:
@@ -122,19 +122,40 @@ paths:
                 $ref: '#/components/schemas/Field'
 components:
   parameters:
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
     fieldId:
       name: fieldId
       in: path
       required: true
       schema:
         type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    CreateFieldRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+    UpdateFieldRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
     Field:
       type: object
       properties:
@@ -149,27 +170,6 @@ components:
           type: string
         isPrimary:
           type: boolean
-        options:
-          type: object
-          additionalProperties: true
-    UpdateFieldRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        options:
-          type: object
-          additionalProperties: true
-    CreateFieldRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
         options:
           type: object
           additionalProperties: true

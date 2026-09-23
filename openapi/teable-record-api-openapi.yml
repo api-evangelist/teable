@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Teable Attachment Record API
+  title: Teable Record API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
   termsOfService: https://teable.io/terms
   contact:
@@ -203,20 +203,27 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    UpdateRecordRequest:
+      type: object
+      required:
+      - record
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+        record:
+          type: object
+          properties:
+            fields:
+              type: object
+              additionalProperties: true
     CreateRecordsRequest:
       type: object
       required:
@@ -240,42 +247,6 @@ components:
               fields:
                 type: object
                 additionalProperties: true
-    RecordListResponse:
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-    UpdateRecordRequest:
-      type: object
-      required:
-      - record
-      properties:
-        fieldKeyType:
-          type: string
-          enum:
-          - name
-          - id
-          - dbFieldName
-          default: name
-        typecast:
-          type: boolean
-        record:
-          type: object
-          properties:
-            fields:
-              type: object
-              additionalProperties: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: integer
-        code:
-          type: string
     Record:
       type: object
       properties:
@@ -290,15 +261,44 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+        code:
+          type: string
+    RecordListResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid access token.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid access token.
       content:
         application/json:
           schema:

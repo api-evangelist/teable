@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Teable Attachment API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
@@ -78,6 +78,16 @@ components:
           type: integer
         height:
           type: integer
+    AttachmentSignatureResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        token:
+          type: string
+        requestHeaders:
+          type: object
+          additionalProperties: true
     AttachmentSignatureRequest:
       type: object
       required:
@@ -90,16 +100,6 @@ components:
           type: integer
         type:
           type: integer
-    AttachmentSignatureResponse:
-      type: object
-      properties:
-        url:
-          type: string
-        token:
-          type: string
-        requestHeaders:
-          type: object
-          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

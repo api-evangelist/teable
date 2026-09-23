@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Teable Attachment Space API
+  title: Teable Space API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
   termsOfService: https://teable.io/terms
   contact:
@@ -120,36 +120,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Collaborator'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    spaceId:
-      name: spaceId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    Space:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
     UpdateSpaceRequest:
       type: object
       properties:
@@ -166,6 +137,22 @@ components:
           type: string
         role:
           type: string
+    Space:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+    CreateSpaceRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     Error:
       type: object
       properties:
@@ -175,13 +162,26 @@ components:
           type: integer
         code:
           type: string
-    CreateSpaceRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    spaceId:
+      name: spaceId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

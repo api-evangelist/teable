@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Teable Attachment Base API
+  title: Teable Base API
   description: REST API for Teable, the open-source no-code database built on PostgreSQL. Manage spaces, bases, tables, fields, records, views, and attachments. Authentication uses a Bearer access token (personal access token or OAuth access token) supplied in the Authorization header. All paths are relative to the API base and begin with /api.
   termsOfService: https://teable.io/terms
   contact:
@@ -113,13 +113,6 @@ paths:
                 $ref: '#/components/schemas/Base'
 components:
   schemas:
-    UpdateBaseRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        icon:
-          type: string
     Base:
       type: object
       properties:
@@ -128,6 +121,13 @@ components:
         name:
           type: string
         spaceId:
+          type: string
+        icon:
+          type: string
+    UpdateBaseRequest:
+      type: object
+      properties:
+        name:
           type: string
         icon:
           type: string

@@ -113,6 +113,13 @@ paths:
                 $ref: '#/components/schemas/Base'
 components:
   schemas:
+    UpdateBaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
     Base:
       type: object
       properties:
@@ -121,13 +128,6 @@ components:
         name:
           type: string
         spaceId:
-          type: string
-        icon:
-          type: string
-    UpdateBaseRequest:
-      type: object
-      properties:
-        name:
           type: string
         icon:
           type: string

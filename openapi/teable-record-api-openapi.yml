@@ -203,7 +203,54 @@ paths:
         '200':
           description: OK
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    RecordListResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+    Record:
+      type: object
+      properties:
+        id:
+          type: string
+        fields:
+          type: object
+          additionalProperties: true
+        createdTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
     UpdateRecordRequest:
       type: object
       required:
@@ -247,20 +294,6 @@ components:
               fields:
                 type: object
                 additionalProperties: true
-    Record:
-      type: object
-      properties:
-        id:
-          type: string
-        fields:
-          type: object
-          additionalProperties: true
-        createdTime:
-          type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
     Error:
       type: object
       properties:
@@ -270,39 +303,6 @@ components:
           type: integer
         code:
           type: string
-    RecordListResponse:
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-  parameters:
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      schema:
-        type: string
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

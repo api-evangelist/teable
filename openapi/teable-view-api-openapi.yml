@@ -81,6 +81,19 @@ paths:
         '200':
           description: OK
 components:
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    viewId:
+      name: viewId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     CreateViewRequest:
       type: object
@@ -122,19 +135,6 @@ components:
         group:
           type: object
           additionalProperties: true
-  parameters:
-    viewId:
-      name: viewId
-      in: path
-      required: true
-      schema:
-        type: string
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

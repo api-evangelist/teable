@@ -135,20 +135,11 @@ components:
       schema:
         type: string
   schemas:
-    Field:
+    UpdateFieldRequest:
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
-        type:
-          type: string
-          description: Field type, e.g. singleLineText, longText, number, singleSelect, multipleSelect, date, checkbox, attachment, link, formula, user, rating, rollup, createdTime, lastModifiedTime, autoNumber.
-        dbFieldName:
-          type: string
-        isPrimary:
-          type: boolean
         options:
           type: object
           additionalProperties: true
@@ -165,11 +156,20 @@ components:
         options:
           type: object
           additionalProperties: true
-    UpdateFieldRequest:
+    Field:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
+        type:
+          type: string
+          description: Field type, e.g. singleLineText, longText, number, singleSelect, multipleSelect, date, checkbox, attachment, link, formula, user, rating, rollup, createdTime, lastModifiedTime, autoNumber.
+        dbFieldName:
+          type: string
+        isPrimary:
+          type: boolean
         options:
           type: object
           additionalProperties: true

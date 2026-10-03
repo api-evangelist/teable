@@ -203,28 +203,15 @@ paths:
         '200':
           description: OK
 components:
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    tableId:
-      name: tableId
+    recordId:
+      name: recordId
       in: path
       required: true
       schema:
         type: string
-    recordId:
-      name: recordId
+    tableId:
+      name: tableId
       in: path
       required: true
       schema:
@@ -237,20 +224,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Record'
-    Record:
+    Error:
       type: object
       properties:
-        id:
+        message:
           type: string
-        fields:
-          type: object
-          additionalProperties: true
-        createdTime:
+        status:
+          type: integer
+        code:
           type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
     UpdateRecordRequest:
       type: object
       required:
@@ -294,15 +276,33 @@ components:
               fields:
                 type: object
                 additionalProperties: true
-    Error:
+    Record:
       type: object
       properties:
-        message:
+        id:
           type: string
-        status:
-          type: integer
-        code:
+        fields:
+          type: object
+          additionalProperties: true
+        createdTime:
           type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -120,17 +120,6 @@ components:
           type: string
         icon:
           type: string
-    Base:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        spaceId:
-          type: string
-        icon:
-          type: string
     CreateBaseRequest:
       type: object
       required:
@@ -139,6 +128,17 @@ components:
         spaceId:
           type: string
         name:
+          type: string
+        icon:
+          type: string
+    Base:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        spaceId:
           type: string
         icon:
           type: string

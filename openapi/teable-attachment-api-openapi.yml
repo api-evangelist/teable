@@ -78,16 +78,6 @@ components:
           type: integer
         height:
           type: integer
-    AttachmentSignatureResponse:
-      type: object
-      properties:
-        url:
-          type: string
-        token:
-          type: string
-        requestHeaders:
-          type: object
-          additionalProperties: true
     AttachmentSignatureRequest:
       type: object
       required:
@@ -100,6 +90,16 @@ components:
           type: integer
         type:
           type: integer
+    AttachmentSignatureResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        token:
+          type: string
+        requestHeaders:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

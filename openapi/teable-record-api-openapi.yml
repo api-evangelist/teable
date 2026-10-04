@@ -203,20 +203,21 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      schema:
-        type: string
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    Record:
+      type: object
+      properties:
+        id:
+          type: string
+        fields:
+          type: object
+          additionalProperties: true
+        createdTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
     RecordListResponse:
       type: object
       properties:
@@ -224,15 +225,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Record'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: integer
-        code:
-          type: string
     UpdateRecordRequest:
       type: object
       required:
@@ -253,6 +245,15 @@ components:
             fields:
               type: object
               additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+        code:
+          type: string
     CreateRecordsRequest:
       type: object
       required:
@@ -276,20 +277,6 @@ components:
               fields:
                 type: object
                 additionalProperties: true
-    Record:
-      type: object
-      properties:
-        id:
-          type: string
-        fields:
-          type: object
-          additionalProperties: true
-        createdTime:
-          type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
   responses:
     NotFound:
       description: Resource not found.
@@ -303,6 +290,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

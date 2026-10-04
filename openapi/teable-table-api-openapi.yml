@@ -81,46 +81,7 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
-    baseId:
-      name: baseId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    Table:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        dbTableName:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-    CreateFieldRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        options:
-          type: object
-          additionalProperties: true
     CreateTableRequest:
       type: object
       required:
@@ -136,6 +97,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateFieldRequest'
+    CreateFieldRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        options:
+          type: object
+          additionalProperties: true
+    Table:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dbTableName:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+  parameters:
+    baseId:
+      name: baseId
+      in: path
+      required: true
+      schema:
+        type: string
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

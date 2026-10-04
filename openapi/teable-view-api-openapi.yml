@@ -81,19 +81,6 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    tableId:
-      name: tableId
-      in: path
-      required: true
-      schema:
-        type: string
-    viewId:
-      name: viewId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     View:
       type: object
@@ -135,6 +122,19 @@ components:
           - kanban
           - gallery
           - calendar
+  parameters:
+    tableId:
+      name: tableId
+      in: path
+      required: true
+      schema:
+        type: string
+    viewId:
+      name: viewId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

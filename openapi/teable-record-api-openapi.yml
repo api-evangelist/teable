@@ -203,7 +203,27 @@ paths:
         '200':
           description: OK
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    RecordListResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
     Record:
       type: object
       properties:
@@ -218,33 +238,6 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
-    RecordListResponse:
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-    UpdateRecordRequest:
-      type: object
-      required:
-      - record
-      properties:
-        fieldKeyType:
-          type: string
-          enum:
-          - name
-          - id
-          - dbFieldName
-          default: name
-        typecast:
-          type: boolean
-        record:
-          type: object
-          properties:
-            fields:
-              type: object
-              additionalProperties: true
     Error:
       type: object
       properties:
@@ -277,19 +270,26 @@ components:
               fields:
                 type: object
                 additionalProperties: true
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    UpdateRecordRequest:
+      type: object
+      required:
+      - record
+      properties:
+        fieldKeyType:
+          type: string
+          enum:
+          - name
+          - id
+          - dbFieldName
+          default: name
+        typecast:
+          type: boolean
+        record:
+          type: object
+          properties:
+            fields:
+              type: object
+              additionalProperties: true
   parameters:
     recordId:
       name: recordId

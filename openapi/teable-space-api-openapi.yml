@@ -120,6 +120,19 @@ paths:
                 items:
                   $ref: '#/components/schemas/Collaborator'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -130,10 +143,8 @@ components:
           type: integer
         code:
           type: string
-    CreateSpaceRequest:
+    UpdateSpaceRequest:
       type: object
-      required:
-      - name
       properties:
         name:
           type: string
@@ -157,24 +168,13 @@ components:
           type: string
         role:
           type: string
-    UpdateSpaceRequest:
+    CreateSpaceRequest:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     spaceId:
       name: spaceId

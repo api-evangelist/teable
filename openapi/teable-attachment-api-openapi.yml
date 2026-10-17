@@ -63,16 +63,18 @@ paths:
                 $ref: '#/components/schemas/Attachment'
 components:
   schemas:
-    AttachmentSignatureResponse:
+    AttachmentSignatureRequest:
       type: object
+      required:
+      - contentType
+      - contentLength
       properties:
-        url:
+        contentType:
           type: string
-        token:
-          type: string
-        requestHeaders:
-          type: object
-          additionalProperties: true
+        contentLength:
+          type: integer
+        type:
+          type: integer
     Attachment:
       type: object
       properties:
@@ -88,18 +90,16 @@ components:
           type: integer
         height:
           type: integer
-    AttachmentSignatureRequest:
+    AttachmentSignatureResponse:
       type: object
-      required:
-      - contentType
-      - contentLength
       properties:
-        contentType:
+        url:
           type: string
-        contentLength:
-          type: integer
-        type:
-          type: integer
+        token:
+          type: string
+        requestHeaders:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

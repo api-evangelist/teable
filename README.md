@@ -1,4 +1,4 @@
-# Teable (teable)
+# Teable
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,180 +66,128 @@
 
 Teable is an open-source, no-code database platform built on PostgreSQL and positioned as an Airtable alternative. It pairs a spreadsheet-style UI with a documented REST API for managing spaces, bases, tables, fields, records, views, and attachments, scaling to millions of rows while keeping data in a real Postgres database.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/teable/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/teable/refs/heads/main/apis.yml)
+**Areas:** No-Code · Database · Airtable Alternative · PostgreSQL · Open Source
 
-## Tags
+## Teable on APIs.io
 
-- No-Code
-- Database
-- Airtable Alternative
-- Postgres
-- Open Source
+Everything profiled for Teable is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/teable/](https://apis.io/providers/teable/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Teable Attachment API](https://apis.io/apis/teable/teable-attachment-api/) — File attachments.
+- [Teable Base API](https://apis.io/apis/teable/teable-base-api/) — Postgres-backed databases within a space.
+- [Teable Field API](https://apis.io/apis/teable/teable-field-api/) — Columns within a table.
+- [Teable Record API](https://apis.io/apis/teable/teable-record-api/) — Rows within a table.
+- [Teable Space API](https://apis.io/apis/teable/teable-space-api/) — Top-level workspaces.
+- [Teable Table API](https://apis.io/apis/teable/teable-table-api/) — Spreadsheet-like tables within a base.
+- [Teable View API](https://apis.io/apis/teable/teable-view-api/) — Views over a table.
 
-## APIs
+### Published properties
 
-### Teable Spaces API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, update, and delete spaces (top-level workspaces) and manage space-level collaborators and their roles.
+#### Agentic access (1)
 
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Teable Agentic Access](https://apis.io/agentic-access/teable/teable-agentic-access/)
 
-- Spaces
-- Workspaces
-- Collaborators
+#### Collections (8)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://help.teable.ai/en/api-doc/overview)
-- [API Reference](https://help.teable.ai/en/api-doc/space-list)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Teable API](https://apis.io/collections/teable/open-teable/)
+- [Teable Attachment API](https://apis.io/collections/teable/open-teable-attachment-api/)
+- [Teable Attachment Base API](https://apis.io/collections/teable/open-teable-base-api/)
+- [Teable Attachment Field API](https://apis.io/collections/teable/open-teable-field-api/)
+- [Teable Attachment Record API](https://apis.io/collections/teable/open-teable-record-api/)
+- [Teable Attachment Space API](https://apis.io/collections/teable/open-teable-space-api/)
+- [Teable Attachment Table API](https://apis.io/collections/teable/open-teable-table-api/)
+- [Teable Attachment View API](https://apis.io/collections/teable/open-teable-view-api/)
 
-### Teable Bases API
+#### Security (2)
 
-Manage bases (the Postgres-backed databases inside a space), including create, duplicate, delete, base collaborators, and shareable links.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
+- [Teable Authentication](https://apis.io/security/teable/teable-authentication/)
+- [Teable Domain Security](https://apis.io/security/teable/teable-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Bases
-- Databases
-- Sharing
+Published plans, tiers and prices.
 
-#### Properties
+- [Teable Plans Pricing](https://apis.io/plans/teable/teable-plans-pricing/)
 
-- [Documentation](https://help.teable.ai/en/api-doc/base-get-all)
-- [API Reference](https://help.teable.ai/en/api-doc/base-get-all)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Teable Tables API
+Published request limits.
 
-Create, list, get, update, duplicate, and delete tables within a base, the spreadsheet-like containers that hold fields and records.
+- [Teable Rate Limits](https://apis.io/rate-limits/teable/teable-rate-limits/)
 
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Tables
-- Schema
+- [Teable Finops](https://apis.io/finops/teable/teable-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://help.teable.ai/en/api-doc/table-list)
-- [API Reference](https://help.teable.ai/en/api-doc/table-list)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Teable Fields API
-
-Define and manage table fields (columns) across Teable's rich field types, including create, update, convert field type, duplicate, and delete.
-
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
-
-#### Tags
-
-- Fields
-- Columns
-- Schema
-
-#### Properties
-
-- [Documentation](https://help.teable.ai/en/api-doc/field-list)
-- [API Reference](https://help.teable.ai/en/api-doc/field-list)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Teable Records API
-
-Full CRUD over records (rows) with rich querying - filter, orderBy, search, projection, pagination, fieldKeyType and cellFormat controls - plus batch create/update/delete, duplicate, and record history.
-
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
-
-#### Tags
-
-- Records
-- Rows
-- CRUD
-
-#### Properties
-
-- [Documentation](https://help.teable.ai/en/api-doc/record-get-list)
-- [API Reference](https://help.teable.ai/en/api-doc/record-get-list)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Teable Views API
-
-Create and manage views (grid, form, Kanban, gallery, calendar) over a table, including filter, sort, group configuration and shareable view links.
-
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
-
-#### Tags
-
-- Views
-- Grid
-- Kanban
-
-#### Properties
-
-- [Documentation](https://help.teable.ai/en/api-doc/view-list)
-- [API Reference](https://help.teable.ai/en/api-doc/view-list)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Teable Attachments API
-
-Upload and retrieve file attachments via signed upload flow, then reference them from attachment-type fields on records.
-
-- **Human URL:** [https://help.teable.ai/en/api-doc/overview](https://help.teable.ai/en/api-doc/overview)
-- **Base URL:** `https://app.teable.io/api`
-
-#### Tags
-
-- Attachments
-- Files
-- Uploads
-
-#### Properties
-
-- [Documentation](https://help.teable.ai/en/api-doc/attachment-upload)
-- [API Reference](https://help.teable.ai/en/api-doc/attachment-upload)
-- [OpenAPI](openapi/teable-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/teable.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/teable.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/teableio)
-- [LinkedIn](https://www.linkedin.com/company/teable)
 - [Website](https://teable.io)
 - [Documentation](https://help.teable.ai/en/api-doc/overview)
-- [Plans](plans/teable-plans-pricing.yml)
-- [Rate Limits](rate-limits/teable-rate-limits.yml)
-- [Fin Ops](finops/teable-finops.yml)
+- [Blog](https://teable.io/blog)
+- [GitHub](https://github.com/teableio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/teable/](https://apis.io/providers/teable/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Teable: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/teable/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
